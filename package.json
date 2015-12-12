@@ -1,0 +1,20 @@
+{
+  "name": "heroku-csv",
+  "version": "1.0.0",
+  "description": "Heroku comma separated config values suport plugin",
+  "main": "index.js",
+  "author": "Jakub Janczak @kubek2k",
+  "repository": "heroku/heroku-hello-world",
+  "bugs": {
+    "url": "https://github.com/heroku/heroku-hello-world/issues"
+  },
+  "keywords": [
+    "heroku-plugin",
+    "csv",
+    "config"
+  ],
+  "license": "ISC",
+  "dependencies": {
+    "heroku-cli-util": "^5.7.1"
+  }
+}
