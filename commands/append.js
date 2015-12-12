@@ -13,13 +13,14 @@ module.exports = {
   run: cli.command(function(context, heroku) {
       var key = context.args.config_key;
       var app = heroku.apps(context.app);
+      var value = context.args.value_to_append;
       return csv.getConfigArray(app, key)
                .then(function(originalArr) {
-                    var newArr = originalArr.concat([context.args.value_to_append]);
+                    var newArr = originalArr.concat([value]);
                     return csv.setConfigArray(app, key, newArr);
                 })
                 .then(function() {
-                    cli.log("Value appended");
+                    cli.log("Value \"" + value + "\" appended to app " + cli.color.app(context.app) + " under key " + cli.color.cyan(key));
                 });
   })
 };

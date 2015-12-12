@@ -24,7 +24,7 @@ module.exports = {
                     }));
                 })
                 .then(function() {
-                    cli.log("Value updated");
+                    cli.log("Value under index " + index_to_update + " under key " + cli.color.cyan(key) + " for app " + cli.color.app(context.app) + " set to value \"" + context.args.new_value + "\"");
                 });
   })
 };

@@ -17,12 +17,12 @@ module.exports = {
                .then(function(originalArr) {
                     var value_to_add = context.args.value_to_add; 
                     if (originalArr.indexOf(value_to_add) >= 0) {
-                        cli.warn("Config variable " + key + " already contains \"" + value_to_add + "\"");
+                        cli.warn("Config variable " + cli.color.cyan(key) + " already contains \"" + value_to_add + "\"");
                     } else {
                         var newArr = originalArr.concat([value_to_add]);
                         return csv.setConfigArray(app, key, newArr)
                                    .then(function() { 
-                                       cli.log("Value added");
+                                       cli.log("Value \"" + value_to_add + "\" added to app " + cli.color.app(context.app) + " under key " + cli.color.cyan(key));
                                    });
                     }
                 });

@@ -19,7 +19,7 @@ module.exports = {
                     return csv.setConfigArray(app, key, configArray.filter(function (v, index) { return index != index_to_remove; }));
                 })
                 .then(function() {
-                    cli.log("Value removed");
+                    cli.log("Value removed from index " + index_to_remove + " from app's " + cli.color.app(context.app) + " key " + cli.color.cyan(key));
                 });
   })
 };
