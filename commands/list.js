@@ -9,6 +9,7 @@ module.exports = {
   args: [{name: 'config_key'}],
   needsApp: true,
   needsAuth: true,
+  default: true,
   run: cli.command(function(context, heroku) {
       var key = context.args.config_key;
       var app = heroku.apps(context.app);
