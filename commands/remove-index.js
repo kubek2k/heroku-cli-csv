@@ -6,7 +6,6 @@ module.exports = {
   topic: 'csv',
   command: 'remove-index',
   description: 'Removes value from CSV config that is stored under given index',
-  help: 'help text for hello:world',
   args: [{name: 'config_key'}, {name: 'index'}],
   needsApp: true,
   needsAuth: true,

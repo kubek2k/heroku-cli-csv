@@ -6,7 +6,6 @@ module.exports = {
   topic: 'csv',
   command: 'update-index',
   description: 'Updates value stored under given index in CSV config variable',
-  help: 'help text for hello:world',
   args: [{name: 'config_key'}, {name: 'index'}, {name: 'new_value'}],
   needsApp: true,
   needsAuth: true,

@@ -6,7 +6,6 @@ module.exports = {
   topic: 'csv',
   command: 'list',
   description: 'Lists values in table for CSV config value',
-  help: 'help text for hello:world',
   args: [{name: 'config_key'}],
   needsApp: true,
   needsAuth: true,

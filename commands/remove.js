@@ -6,7 +6,6 @@ module.exports = {
   topic: 'csv',
   command: 'remove',
   description: 'Removes value from CSV config',
-  help: 'help text for hello:world',
   args: [{name: 'config_key'}, {name: 'value_to_remove'}],
   needsApp: true,
   needsAuth: true,

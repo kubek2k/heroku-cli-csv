@@ -6,7 +6,6 @@ module.exports = {
   topic: 'csv',
   command: 'add',
   description: 'Adds value to CSV config variable, if its not already there',
-  help: 'help text for hello:world',
   args: [{name: 'config_key'}, {name: 'value_to_add'}],
   needsApp: true,
   needsAuth: true,

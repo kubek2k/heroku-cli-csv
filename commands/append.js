@@ -6,7 +6,6 @@ module.exports = {
   topic: 'csv',
   command: 'append',
   description: 'Appends value to the end of CSV config variable',
-  help: 'help text for hello:world',
   args: [{name: 'config_key'}, {name: 'value_to_append'}],
   needsApp: true,
   needsAuth: true,
