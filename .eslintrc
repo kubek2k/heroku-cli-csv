@@ -1,0 +1,11 @@
+{
+  "extends": "vgno",
+  "env": {
+    "es6": true,
+    "node": true,
+    "mocha": true
+  },
+  "rules": {
+    "indent": [2, 2, {"SwitchCase": 1}]
+  }
+}
