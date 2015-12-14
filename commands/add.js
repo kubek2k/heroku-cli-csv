@@ -5,7 +5,6 @@ const csv = require('./heroku-csv.js');
 function addCommand(context, heroku) {
   const key = context.args.config_key;
   const app = heroku.apps(context.app);
-
   return csv.getConfigArray(app, key)
     .then((originalArr) => {
       const valueToAdd = context.args.value_to_add;

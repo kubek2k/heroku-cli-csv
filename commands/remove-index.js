@@ -1,6 +1,19 @@
 'use strict';
-let cli = require('heroku-cli-util');
-let csv = require('./heroku-csv.js');
+const cli = require('heroku-cli-util');
+const csv = require('./heroku-csv.js');
+
+function removeIndexCommand(context, heroku) {
+  const app = heroku.apps(context.app);
+  const key = context.args.config_key;
+  const indexToRemove = context.args.index;
+  return csv.getConfigArray(app, key)
+    .then(function(configArray) {
+      return csv.setConfigArray(app, key, configArray.filter(function (v, index) { return index != indexToRemove; }));
+    })
+  .then(function() {
+    cli.log("Value removed from index " + indexToRemove + " from app's " + cli.color.app(context.app) + " key " + cli.color.cyan(key));
+  });
+}
 
 module.exports = {
   topic: 'csv',
@@ -9,16 +22,5 @@ module.exports = {
   args: [{name: 'config_key'}, {name: 'index'}],
   needsApp: true,
   needsAuth: true,
-  run: cli.command(function(context, heroku) {
-      var app = heroku.apps(context.app);
-      var key = context.args.config_key;
-      var index_to_remove = context.args.index;
-      return csv.getConfigArray(app, key)
-                .then(function(configArray) {
-                    return csv.setConfigArray(app, key, configArray.filter(function (v, index) { return index != index_to_remove; }));
-                })
-                .then(function() {
-                    cli.log("Value removed from index " + index_to_remove + " from app's " + cli.color.app(context.app) + " key " + cli.color.cyan(key));
-                });
-  })
+  run: cli.command(removeIndexCommand)
 };

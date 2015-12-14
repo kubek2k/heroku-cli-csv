@@ -1,6 +1,19 @@
 'use strict';
-let cli = require('heroku-cli-util');
-let csv = require('./heroku-csv.js');
+const cli = require('heroku-cli-util');
+const csv = require('./heroku-csv.js');
+
+function removeCommand(context, heroku) {
+  const app = heroku.apps(context.app);
+  const key = context.args.config_key;
+  const toRemove = context.args.value_to_remove;
+  return csv.getConfigArray(app, key)
+    .then(function(configArray) {
+      return csv.setConfigArray(app, key, configArray.filter(function (v) { return v != toRemove; }));
+    })
+  .then(function() {
+    cli.log("Value \"" + toRemove + "\" removed from app's " + cli.color.app(context.app) + " key " + cli.color.cyan(key));
+  });
+}
 
 module.exports = {
   topic: 'csv',
@@ -9,16 +22,5 @@ module.exports = {
   args: [{name: 'config_key'}, {name: 'value_to_remove'}],
   needsApp: true,
   needsAuth: true,
-  run: cli.command(function(context, heroku) {
-      var app = heroku.apps(context.app);
-      var key = context.args.config_key;
-      var to_remove = context.args.value_to_remove;
-      return csv.getConfigArray(app, key)
-                .then(function(configArray) {
-                    return csv.setConfigArray(app, key, configArray.filter(function (v) { return v != to_remove; }));
-                })
-                .then(function() {
-                    cli.log("Value \"" + to_remove + "\" removed from app's " + cli.color.app(context.app) + " key " + cli.color.cyan(key));
-                });
-  })
+  run: cli.command(removeCommand)
 };
