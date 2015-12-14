@@ -12,7 +12,7 @@ With this plugin its easy as:
 heroku csv:add SOME_VARIABLE v4
 ```
 
-For more options see Usage.
+For more options see [Usage](#usage).
 
 ## Installation
 
