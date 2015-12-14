@@ -1,7 +1,18 @@
 Heroku CSV CLI plugin
 =====================
 
-A plugin to Heroku CLI, that simplifies the management of config values in a form of CSV.
+Let's say you have lot of configuration variables in form: `SOME_VARIABLE=v1,v2,v3`. Those variables are horrible to mange.
+To change its value from CLI you have to:
+  * copy current value (`heroku config:get`)
+  * append new value to the list
+  * set new value (`heroku config:set`)
+
+With this plugin its easy as:
+```
+heroku csv:add SOME_VARIABLE v4
+```
+
+For more options see Usage.
 
 ## Installation
 
