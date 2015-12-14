@@ -1,6 +1,6 @@
 {
   "name": "heroku-cli-csv",
-  "version": "1.0.1",
+  "version": "1.0.2",
   "description": "Heroku comma separated config values suport plugin",
   "main": "index.js",
   "author": "Jakub Janczak @kubek2k",
