@@ -14,7 +14,14 @@
     "config"
   ],
   "license": "ISC",
+  "scripts": {
+    "test": "eslint ."
+  },
   "dependencies": {
     "heroku-cli-util": "^5.7.1"
+  },
+  "devDependencies": {
+    "eslint": "^1.10.3",
+    "eslint-config-vgno": "^5.0.0"
   }
 }
