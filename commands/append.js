@@ -3,24 +3,29 @@ const cli = require('heroku-cli-util');
 const csv = require('./heroku-csv.js');
 
 function appendCommand(context, heroku) {
-  const key = context.args.config_key;
+  if(context.args.length < 2) {
+    cli.error('At least two args required!');
+    return;
+  }
+  const key = context.args[0];
+  const values = context.args.slice(1);
   const app = heroku.apps(context.app);
-  const value = context.args.value_to_append;
   return csv.getConfigArray(app, key)
     .then(function(originalArr) {
-      var newArr = originalArr.concat([value]);
+      var newArr = originalArr.concat(values);
       return csv.setConfigArray(app, key, newArr);
     })
   .then(function() {
-    cli.log("Value \"" + value + "\" appended to app " + cli.color.app(context.app) + " under key " + cli.color.cyan(key));
+    cli.log(`Values ${values} appended to app ${cli.color.app(context.app)} under key ${cli.color.cyan(key)}`);
   });
 }
 
 module.exports = {
   topic: 'csv',
   command: 'append',
-  description: 'Appends value to the end of CSV config variable',
-  args: [{name: 'config_key'}, {name: 'value_to_append'}],
+  description: 'Appends value(s) to the end of CSV config variable',
+  variableArgs: true,
+  args: [{name: 'key'}, {name: 'values...'}],
   needsApp: true,
   needsAuth: true,
   run: cli.command(appendCommand)
