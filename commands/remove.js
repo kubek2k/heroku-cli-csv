@@ -8,7 +8,14 @@ function removeCommand(context, heroku) {
   const toRemove = context.args.value_to_remove;
   return csv.getConfigArray(app, key)
     .then(function(configArray) {
-      return csv.setConfigArray(app, key, configArray.filter(function (v) { return v != toRemove; }));
+        const nonMatching = configArray.filter(function(v) { return v !== toRemove; });
+        if (nonMatching.length == configArray.length) {
+            throw new Error('Value ' + toRemove + ' not in the array under the key ' + key);
+        }
+        return nonMatching;
+    })
+    .then(function(filteredArray) {
+      return csv.setConfigArray(app, key, filteredArray);
     })
   .then(function() {
     cli.log("Value \"" + toRemove + "\" removed from app's " + cli.color.app(context.app) + " key " + cli.color.cyan(key));
