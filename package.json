@@ -1,6 +1,6 @@
 {
   "name": "heroku-cli-csv",
-  "version": "1.0.5",
+  "version": "1.0.6",
   "description": "Heroku comma separated config values suport plugin",
   "main": "index.js",
   "author": "Jakub Janczak @kubek2k",
@@ -24,5 +24,6 @@
   "devDependencies": {
     "eslint": "^1.10.3",
     "eslint-config-vgno": "^5.0.0"
-  }
+  },
+  "files": ["commands/*", "index.js"]
 }
